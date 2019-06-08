@@ -15,9 +15,10 @@
         {
         margin: 0 auto;
         max-width: 700px;
-        height: 100px;
+        height: 205px;
         background-color: #ccc;
         border-radius: 3px;
+        text-align: center;
         }
     </style>
 </head>
