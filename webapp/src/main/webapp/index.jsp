@@ -22,6 +22,10 @@
     </style>
 </head>
 <body>
-    <div class="center-div">Hola Paola</div>
+    <div class="center-div">
+        <p>Hola Paola</p>
+        <hr>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, blanditiis.</p>
+    </div>
 </body>
 </html>
