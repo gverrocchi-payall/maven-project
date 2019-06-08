@@ -26,6 +26,8 @@
         <p>Hola Paola</p>
         <hr>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, blanditiis.</p>
+        <hr>
+        <img height="100px" src="https://www.desveda.info/wp-content/uploads/2017/03/descarga-6-546x365.jpg" alt="" srcset="">
     </div>
 </body>
 </html>
