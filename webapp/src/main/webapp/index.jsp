@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="center-div">
-        <p>Hola rocket!</p>
+        <p>Hola  incredible rocket!</p>
         <hr>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, blanditiis.</p>
         <hr>
