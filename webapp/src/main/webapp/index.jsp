@@ -22,6 +22,8 @@
     </style>
 </head>
 <body>
-    <div class="center-div">Hola Paola</div>
+    <div class="center-div">
+        <p class="center-div">Hola Paola</p>
+    </div>
 </body>
 </html>
