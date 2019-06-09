@@ -15,17 +15,11 @@ pipeline{
                 sh 'mvn clean package'
             }
             post{
-                // always{
-                //     echo "========always========"
-                // }
                 success{
                     echo "========Build executed successfully========"
                     echo "Now Archiving..."
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-                // failure{
-                //     echo "========A execution failed========"
-                // }
             }
         }
         stage("Deploy to Staging"){
@@ -34,32 +28,29 @@ pipeline{
                 // trigger another job
                 build job: 'Deploy-to-staging'
             }
-            // post{
-            //     always{
-            //         echo "====++++always++++===="
-            //     }
-            //     success{
-            //         echo "====++++A executed succesfully++++===="
-            //     }
-            //     failure{
-            //         echo "====++++A execution failed++++===="
-            //     }
+
+        }
+        stage("Deploy to Production"){
+            steps{
+                echo "====++++executing Deploy to Production++++===="
+                timeout(time:5, unit:'DAYS'){ 
+                    // this means that if the job is not approved within 5 days it will fail
+                    input message: "Approve PRODUCTION Deployment?"
+                }
+                build job: 'Deploy-to-prod'
+            }
+            post{
+                success{
+                    echo "====++++Code deployed to Production++++===="
+                }
+                failure{
+                    echo "====++++Deployment failed++++===="
+                }
         
-            // }
+            }
         }
     }
 
-    // post{
-    //     always{
-    //         echo "========always========"
-    //     }
-    //     success{
-    //         echo "========pipeline executed successfully ========"
-    //     }
-    //     failure{
-    //         echo "========pipeline execution failed========"
-    //     }
-    // }
 }
 
 
