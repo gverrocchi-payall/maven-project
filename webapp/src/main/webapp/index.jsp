@@ -15,7 +15,7 @@
         {
         margin: 0 auto;
         max-width: 700px;
-        height: 205px;
+        height: 305px;
         background-color: #ccc;
         border-radius: 3px;
         text-align: center;
@@ -27,6 +27,7 @@
         <p>Hola  incredible rocket!</p>
         <hr>
         <p>Lorem ipsum dolor sit amet consectetur Gian was here on AWS too adipisicing elit. Saepe, blanditiis.</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, atque eos. Culpa, accusantium temporibus molestiae cumque vel non ullam quod!</p>
         <hr>
         <img height="100px" src="https://www.desveda.info/wp-content/uploads/2017/03/descarga-6-546x365.jpg" alt="" srcset="">
     </div>
