@@ -38,6 +38,10 @@ stages{
 
                 stage ("Deploy to Production"){
                     steps {
+                        timeout(time:5, unit:'DAYS'){ 
+                            // this means that if the job is not approved within 5 days it will fail
+                            input message: "Approve PRODUCTION Deployment?"
+                        }
                         sh "scp -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
                     }
                 }
