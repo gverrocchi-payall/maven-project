@@ -4,6 +4,7 @@ pipeline {
     tools{
         maven 'Local Maven'
         jdk 'Local JDK'
+        docker 'Local Docker'
     }
 
     parameters {
