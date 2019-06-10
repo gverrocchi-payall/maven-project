@@ -31,6 +31,8 @@
         <hr>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, numquam sint. Tempora autem obcaecati vitae dignissimos.</p>
         <hr>
+        <p>Este cambio deberia verse reflejado primero en el servidor de prueba</p>
+        <p>Luego de su aprobacion por un usuario en jenkins, pasara a produccion</p>
         <img height="100px" src="https://www.desveda.info/wp-content/uploads/2017/03/descarga-6-546x365.jpg" alt="" srcset="">
     </div>
 </body>
