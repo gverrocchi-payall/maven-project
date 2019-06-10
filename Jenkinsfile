@@ -4,7 +4,7 @@ pipeline {
     tools{
         maven 'Local Maven'
         jdk 'Local JDK'
-        docker 'Local Docker'
+        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Local Docker'
     }
 
     parameters {
@@ -20,7 +20,7 @@ stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
-                sh 'docker build . -t tomcatwebapp:${env.BUILD_ID}'
+                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
             post {
                 success {
