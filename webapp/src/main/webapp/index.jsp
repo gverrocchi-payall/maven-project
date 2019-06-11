@@ -15,7 +15,7 @@
         {
         margin: 0 auto;
         max-width: 700px;
-        height: 305px;
+        height: 500px;
         background-color: #ccc;
         border-radius: 3px;
         text-align: center;
