@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        customImage = ''
+    }
     agent any
 
     tools{
@@ -20,21 +23,34 @@ stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
-                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                // sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
+                // sh "docker push gianv9/tomcatwebapp:${env.BUILD_ID}"
+                script {
+                    customImage = docker.build("gianv9/tomcatwebapp:${env.BUILD_ID}")
                 }
             }
+            // post {
+            //     success {
+            //         echo 'Now Archiving...'
+            //         archiveArtifacts artifacts: '**/target/*.war'
+            //     }
+            // }
         }
 
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        // sh "scp -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        script {
+                            echo "====== PUSHING BUILT IMAGE TO REPOSITORY ======"
+                            // https://index.docker.io/v2/
+                            docker.withRegistry('', 'dockerhub') {
+
+                                /* Push the container to the custom Registry */
+                                customImage.push()
+                            }
+                        }
                     }
                 }
 
