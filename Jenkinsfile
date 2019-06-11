@@ -37,20 +37,27 @@ stages{
             // }
         }
 
-        stage ('Deployments'){
+        stage("Push"){
+            steps{
+                script {
+                    echo "====== PUSHING BUILT IMAGE TO REPOSITORY ======"
+                    // https://index.docker.io/v2/
+                    docker.withRegistry('', 'dockerhub') {
+
+                        /* Push the container to the custom Registry */
+                        customImage.push()
+                    }
+                }
+            }
+        }
+
+        stage ('Deployment'){
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
                         // sh "scp -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
-                        script {
-                            echo "====== PUSHING BUILT IMAGE TO REPOSITORY ======"
-                            // https://index.docker.io/v2/
-                            docker.withRegistry('', 'dockerhub') {
-
-                                /* Push the container to the custom Registry */
-                                customImage.push()
-                            }
-                        }
+                        sh "scp -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem docker-compose.yml ec2-user@${params.tomcat_dev}:/home/ec2-user/docker-compose.yml"
+                        sh "ssh -o StrictHostKeyChecking=no -i /home/jenkins/tomcat-demo.pem ec2-user@${params.tomcat_dev} 'BUILD_ID=${env.BUILD_ID} docker-compose up -d'"
                     }
                 }
 

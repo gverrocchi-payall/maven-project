@@ -1,0 +1,7 @@
+version: "3.5"
+
+services:
+  tomcat:
+    image: gianv9/tomcatwebapp:${BUILD_ID}
+    ports: 
+      - 9090:8080
